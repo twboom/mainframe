@@ -1,25 +1,15 @@
 let mainframe = []; // Making the initial variable
+mainframe.info = {
+    'version': 0.1,
+    'tools': ['url parameters']
+}
 
 
 // COMMON TOOLS
 
 // Fetch
 mainframe.fetch = function(url, type) {
-    let output;
-    if (type === undefined) { type = false }
-    console.log(url)
-    console.log(type)
-    fetch(url).then(
-        function(u){ return u.json();}
-      ).then(
-        function(json){
-            console.log(json)
-            output = json;
-            console.log(output)
-        }
-      )
-    console.log(output)
-    return output
+
 }   
 
 // Find
