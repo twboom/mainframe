@@ -1,7 +1,11 @@
 let mainframe = []; // Making the initial variable
 
+
+// COMMON TOOLS
+mainframe.js = []; // Making the JS variable
+
 // Fetch
-mainframe.fetch = function(url, out, type) {
+mainframe.js.fetch = function(url, out, type) {
     fetch(url)
         .then(response => response.text())
         .then(data => function() {
@@ -15,3 +19,8 @@ mainframe.fetch = function(url, out, type) {
 
 // URL Parameters
 
+
+// STATISTICS
+mainframe.statistics = [];
+
+// Function stats
