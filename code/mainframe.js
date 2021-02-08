@@ -4,14 +4,23 @@ let mainframe = []; // Making the initial variable
 // COMMON TOOLS
 
 // Fetch
-mainframe.fetch = function(url, out, type) {
-    fetch(url)
-        .then(response => response.text())
-        .then(data => function() {
-            if (type !== true) { out = JSON.parse(data) };
-            return out;
-        });
-};
+mainframe.fetch = function(url, type) {
+    let output;
+    if (type === undefined) { type = false }
+    console.log(url)
+    console.log(type)
+    fetch(url).then(
+        function(u){ return u.json();}
+      ).then(
+        function(json){
+            console.log(json)
+            output = json;
+            console.log(output)
+        }
+      )
+    console.log(output)
+    return output
+}   
 
 // Find
 
