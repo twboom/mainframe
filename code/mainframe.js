@@ -66,7 +66,7 @@ mainframe.statistics.update = function(name, process) {
     instance.completedSteps += 1;
     if (process == undefined) { process = 'unkown process'}
     console.log(mainframe.prefix.statistics + 'Completed '+ process + ' from ' + name + ' in ' + (Date.now() - instance.latest) + 'ms')
-    console.log(mainframe.prefix.statistics + instance.completedSteps + ' out of ' + instance.steps + ' completed, ' + (instance.steps - instance.completedSteps) + ' remaining (' + ((instance.completedSteps - instance.steps) * 100) + '%)')
+    console.log(mainframe.prefix.statistics + instance.completedSteps + ' out of ' + instance.steps + ' completed, ' + (instance.steps - instance.completedSteps) + ' remaining (' + ((instance.completedSteps / instance.steps) * 100) + '%)')
     instance.env.push(new completedStep(instance.completedSteps - 1, Date.now() - instance.latest, process))   
     instance.latest = Date.now();
     if (instance.completedSteps === instance.steps) { mainframe.statistics.finish(name) }
