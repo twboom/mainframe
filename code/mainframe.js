@@ -16,18 +16,30 @@ mainframe.fetch = function(url, type) {
 };
 
 // Find
-mainframe.find = function(array, key, query) {
+mainframe.find = function(array, key) {
     function object() {
-        return objectValue = key;
+        return key;
     }
 
     return array.find(object)
 };
 
+// Filter
+mainframe.filter = function(array, key) {
+    function object() {
+        return key
+    }
+
+    return array.filter(object)
+}
+
+
 // URL Parameters
 mainframe.parameters = function(parameter) {
     return (new URL(document.location)).searchParams.get(parameter)
 };
+
+
 
 // STATISTICS
 mainframe.statistics = []; // Declaring the Statistics variable
