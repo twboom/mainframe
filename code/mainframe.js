@@ -2,6 +2,9 @@ let mainframe = []; // Making the initial variable
 mainframe.info = {
     'version': 0.1,
     'tools': ['url parameters']
+};
+mainframe.prefix = {
+    'statistics': 'MF Statistics: '
 }
 
 
@@ -47,7 +50,7 @@ mainframe.statistics.new = function(name, steps) {
         }
     }
     mainframe.statistics.env.push(new tracker(name, steps));
-    console.log(mainframe.statistics.env)
+    console.log(mainframe.prefix.statistics + 'Created tracker for ' + name + ' with ' + steps + ' steps')
 }
 
 // Completed step
@@ -62,8 +65,8 @@ mainframe.statistics.update = function(name, process) {
     const instance = mainframe.find(mainframe.statistics.env, name)
     instance.completedSteps += 1;
     if (process == undefined) { process = 'unkown process'}
-    console.log('Completed '+ process + ' from ' + name + ' in ' + (Date.now() - instance.latest) + 'ms')
-    console.log(instance.completedSteps + ' out of ' + instance.steps + ' completed, ' + (instance.steps - instance.completedSteps) + ' remaining (' + ((instance.completedSteps - instance.steps) * 100) + '%)')
+    console.log(mainframe.prefix.statistics + 'Completed '+ process + ' from ' + name + ' in ' + (Date.now() - instance.latest) + 'ms')
+    console.log(mainframe.prefix.statistics + instance.completedSteps + ' out of ' + instance.steps + ' completed, ' + (instance.steps - instance.completedSteps) + ' remaining (' + ((instance.completedSteps - instance.steps) * 100) + '%)')
     instance.env.push(new completedStep(instance.completedSteps - 1, Date.now() - instance.latest, process))   
     instance.latest = Date.now();
     if (instance.completedSteps === instance.steps) { mainframe.statistics.finish(name) }
@@ -73,8 +76,8 @@ mainframe.statistics.update = function(name, process) {
 mainframe.statistics.finish = function(name) {
     const instance = mainframe.find(mainframe.statistics.env, name)
     const time = Date.now() - instance.start
-    console.log('Completed all ' + instance.steps + ' steps from ' + name + ' in ' + time + 'ms')
+    console.log(mainframe.prefix.statistics + 'Completed all ' + instance.steps + ' steps from ' + name + ' in ' + time + 'ms')
     for (let i = 0; i < instance.env.length; i++) {
-        console.log('Step ' + instance.env[i].step + ' (' + instance.env[i].process + '): ' + instance.env[i].lenght + 'ms')
+        console.log(mainframe.prefix.statistics + 'Step ' + instance.env[i].step + ' (' + instance.env[i].process + '): ' + instance.env[i].lenght + 'ms')
     }; 
 }
